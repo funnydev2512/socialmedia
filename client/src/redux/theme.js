@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     // default is light theme if not have theme in local storage
-    theme: JSON.parse(window?.localStorage.getItem('theme')) ?? 'light',
+    theme: JSON.parse(window?.localStorage.getItem('theme')) ?? "dark",
 }
 
 // slice is a part of redux store and it has a reducer and actions
