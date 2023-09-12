@@ -1,8 +1,11 @@
 import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Home, Login, Profile, Register, ResetPassword } from "./pages";
+import { useSelector } from "react-redux";
 // check to show the component of app if user is logged or not
 function Layout(){
-  const user = null;
+  //useSelector is a hook to get data from redux store
+  const user = useSelector((state) => state.user);
+  // console.log(user);
   const location = useLocation();
   
   return user?.token ? (
@@ -15,8 +18,10 @@ function Layout(){
 }
 
 function App() {
+  const {theme} = useSelector((state) => state.theme);
+  console.log(theme);
   return (
-    <div className="w-full min-h-[100vh]">
+    <div data-theme={theme} className="w-full min-h-[100vh]">
       <Routes>
         <Route  element={<Layout/>}>
           <Route path='/' element={<Home/>}/>
