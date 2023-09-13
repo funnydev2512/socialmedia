@@ -5,7 +5,7 @@ import { TextInput, Loading, CustomButton } from "../components";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BgImage } from '../assets';
-import { TbWaterpolo } from "react-icons/tb"
+import { TbBrandGraphql } from "react-icons/tb"
 import { BsShare } from "react-icons/bs"
 import { ImConnection } from "react-icons/im"
 import { AiOutlineInteraction } from "react-icons/ai"
@@ -14,6 +14,9 @@ const Login = () => {
   const { register, handleSubmit, formState: {errors}, } = useForm({
     mode: 'onChange'
   });
+
+  const onSubmit = async(data) => {
+  }
 
   const {theme} = useSelector((state) => state.theme);
 
@@ -29,10 +32,10 @@ const Login = () => {
         <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
           <div className='w-full flex gap-2 items-center mb-6'>
             <div className='p-2 bg-[#065ad8] rounded text-white'>
-              <TbWaterpolo />
+              <TbBrandGraphql />
             </div>
             <span className='text=2xl text-[#065ad8] font-semibold'>
-              K9 Social Media
+              K9 Faze Buuk
             </span>
           </div>
 
@@ -43,7 +46,9 @@ const Login = () => {
             Welcome back
           </span>
 
-          <form className='py-8 flex flex-col gap-5'>
+          <form className='py-8 flex flex-col gap-5'
+          onSubmit={handleSubmit(onSubmit)}
+          >
             <TextInput
               name='email' placeholder='email@example.com'
               label='Email Address' type='email'
