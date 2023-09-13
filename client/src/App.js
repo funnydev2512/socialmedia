@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 // check to show the component of app if user is logged or not
 function Layout(){
   //useSelector is a hook to get data from redux store
-  const user = useSelector((state) => state.user);
-  // console.log(user);
+  const {user} = useSelector((state) => state.user);
+  console.log(user);
+  //useLocation is a hook to get the current location
   const location = useLocation();
   
   return user?.token ? (
@@ -19,7 +20,6 @@ function Layout(){
 
 function App() {
   const {theme} = useSelector((state) => state.theme);
-  console.log(theme);
   return (
     <div data-theme={theme} className="w-full min-h-[100vh]">
       <Routes>
