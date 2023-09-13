@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import { TextInput, Loading, CustomButton } from "../components";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import {TbWaterpolo} from "react-icons/tb"
+import { BgImage } from '../assets';
+import { TbWaterpolo } from "react-icons/tb"
+import { BsShare } from "react-icons/bs"
+import { ImConnection } from "react-icons/im"
+import { AiOutlineInteraction } from "react-icons/ai"
 //useForm is used to handle form validation and submission
 const Login = () => {
   const { register, handleSubmit, formState: {errors}, } = useForm({
@@ -23,7 +26,7 @@ const Login = () => {
     <div className='bg-bgColor w-full h-[100vh] flex items-center justify-center p-6'>
       <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex bg-primary rounded-xl overflow-hidden shadow-xl'>
         {/* Left Side */} 
-        <div className='w-full lg:w=1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
+        <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
           <div className='w-full flex gap-2 items-center mb-6'>
             <div className='p-2 bg-[#065ad8] rounded text-white'>
               <TbWaterpolo />
@@ -49,7 +52,7 @@ const Login = () => {
                   required: 'Email is required',
                 })
               }
-              // styles={theme === "dark" ? 'w-full rounded-full text-red-300' : 'w-full rounded-full text-pink-300'}
+              // styles={theme == "dark" ? 'w-full rounded-full text-red-300' : 'w-full rounded-full text-pink-300'}
               styles='w-full rounded-full'
               labelStyles='mb-2'
               error = {errors.email ? errors.email.message : ''}
@@ -99,7 +102,36 @@ const Login = () => {
           </p>
         </div>
         {/* Right Side */}
-          
+        <div className='hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-blue'>
+            <div className='relative w-full flex items-center justify-center'>
+              <img src={BgImage} alt="Bg Image" className='w-48 2xl:w-64 h-48 2xl:h-64 rounded-full object-cover'/>
+
+              <div className='absolute flex items-center gap-1 bg-white right-10 top-10 py-2 px-5 rounded-full'>
+                <BsShare size={14}/>
+                <span className='text-xs font-semibold'>Share</span>
+              </div>
+
+              <div className='absolute flex items-center gap-1 bg-white left-10 top-6 py-2 px-5 rounded-full'>
+                <ImConnection/>
+                <span className='text-xs font-semibold'>Connect</span>
+              </div>
+
+              <div className='absolute flex items-center gap-1 bg-white left-12 bottom-6 py-2 px-5 rounded-full'>
+                <AiOutlineInteraction/>
+                <span className='text-xs font-semibold'>Interact</span>
+              </div>
+
+            </div>
+
+            <div className='mt-16 text-center'>
+              <p className='text-white text-base'>
+                  Connect with friends & have share for fun
+              </p>
+              <span className='text-sm text-white/80'>
+                  Share your thoughts, photos, videos and more
+              </span>
+            </div>
+        </div>
       </div>
     </div>
   )
