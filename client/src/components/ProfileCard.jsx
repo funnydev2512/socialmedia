@@ -5,7 +5,9 @@ import { NoProfile } from '../assets'
 import { LiaEditSolid } from "react-icons/lia"
 import { updateProfile } from '../redux/userSlice'
 import { CiLocationOn } from "react-icons/ci"
-import { BsBriefcase, BsPersonFillAdd } from "react-icons/bs"
+import moment from 'moment'
+import { FaTwitterSquare } from "react-icons/fa"
+import { BsBriefcase, BsFacebook, BsInstagram, BsPersonFillAdd } from "react-icons/bs"
 // import { user } from '../assets/data'
 
 const ProfileCard = ({user}) => {
@@ -56,7 +58,45 @@ const ProfileCard = ({user}) => {
                 <p className='text-xl text-ascent-1 font-semibold'>
                     {user?.friends?.length} Friends
                 </p>
+
+                <div className='flex items-center justify-between'>
+                    <span className='text-ascent-2'>Who viewed your profile</span>
+                    <span className='text-ascent-1 text-lg'>{user?.views?.length}</span>
+                </div>
+
+                <span className='text-base text-blue'>
+                    {user?.verified ? "Verified Account" : "Unverified Account"}
+                </span>
+
+                <div className='flex items-center justify-between'>
+                    <span className='text-ascent-2'>Joined</span>
+                    <span className='text-ascent-1 text-base'>
+                        {moment(user?.createdAt).fromNow()}
+                    </span>
+                </div>
             </div>
+
+            <div className='w-full flex flex-col gap-4 py-4 pb-6'>
+                <p className='text-ascent-1 text-lg font-semibold'>
+                        Social Profile
+                </p>
+
+                <div className='flex gap-2 items-center text-ascent-2'>
+                    <BsInstagram className="text-xl text-ascent-1" />
+                    <span>Instagram</span>
+                </div>
+
+                <div className='flex gap-2 items-center text-ascent-2'>
+                    <BsFacebook className="text-xl text-ascent-1" />
+                    <span>Facebook</span>
+                </div>
+
+                <div className='flex gap-2 items-center text-ascent-2'>
+                    <FaTwitterSquare className="text-xl text-ascent-1" />
+                    <span>Twitter</span>
+                </div>
+            </div>
+
         </div>
     </div>
   )
