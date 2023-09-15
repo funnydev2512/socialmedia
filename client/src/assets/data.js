@@ -86,7 +86,9 @@ export const user = {
   createdAt: "2023-08-18T09:38:14.179Z",
   updatedAt: "2023-08-21T06:46:18.258Z",
   profileUrl:
-    "https://res.cloudinary.com/djs3wu5bg/image/upload/v1683874454/samples/people/boy-snow-hoodie.jpg",
+    // "https://res.cloudinary.com/djs3wu5bg/image/upload/v1683874454/samples/people/boy-snow-hoodie.jpg",
+    // "https://thenorthlines.com/wp-content/uploads/2022/11/ELON-MUSK.jpg",
+    "https://e3.365dm.com/22/05/2048x1152/skynews-elon-musk_5780923.jpg",
   token: "hZWFmZmU3NmMiLCJpYXQiOjE2OTIwMzY5",
 };
 
