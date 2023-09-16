@@ -25,10 +25,24 @@ const ReplyCard = ({reply, user, handleLike}) => {
                     </Link>
 
                     <span className='text-ascent-2 text-sm'>
-                    {moment(reply?.createdAt ?? "2023-05-25").fromNow()}
+                    {moment(reply?.createdAt).fromNow()}
                 </span>
 
                 </div>
+            </div>
+
+            <div className='ml-12'>
+                <p className='text-ascent-2'>{reply?.comment}</p>
+                    <div className='mt-2 flex gap-6'>
+                        <p className='flex gap-2 items-center text-base text-ascent-2 cursor-pointer' onClick={handleLike}>
+                            {reply?.likes?.includes(user?._id) ?(
+                                <BiSolidLike size={20} color='blue'/>
+                            ):(
+                                <BiLike size={20} />
+                            )}
+                                {reply?.likes?.length} Likes
+                        </p>                        
+                    </div>
             </div>
         </div>
     )
