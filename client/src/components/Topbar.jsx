@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import {TextInput, CustomButton} from '../components'
 import {  useForm } from "react-hook-form"
 import { IoMdNotificationsOutline } from "react-icons/io"
-import { BsMoon, BsSunFill } from "react-icons/bs"
+import { HiOutlineLightBulb, HiLightBulb } from "react-icons/hi"
 import { setTheme } from '../redux/theme'
 import { Logout } from '../redux/userSlice'
 
@@ -46,9 +46,9 @@ const Topbar = () => {
         </form>
 
         {/*ICON*/}
-        <div className='flex gap-4 items-center text-ascent-1 text-md md:text-xl'>
+        <div className='flex gap-5 items-center text-ascent-1 text-md md:text-xl'>
             <button onClick={()=> handleTheme()}>
-                {theme ? <BsMoon /> : <BsSunFill /> }
+                {theme ? <HiOutlineLightBulb /> : <HiLightBulb /> }
             </button>
             <div className='hidden lg:flex'>
                 <IoMdNotificationsOutline />
