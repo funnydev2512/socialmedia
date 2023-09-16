@@ -9,7 +9,32 @@ import { CustomButton, Loading } from '../components'
 import { TextInput } from '../components'
 import { postComments } from '../assets/data'
 
-const CommentForm = ({user, id, getComment, replyAt}) => {
+const ReplyCard = ({reply, user, handleLike}) => {
+    return (
+        <div className="w-full py-3">
+            <div className="flex gap-3 items-center mb-1">
+                <Link to={"/profile" + reply?.userId.id}>
+                    <img src={reply?.userId?.profileUrl ?? NoProfile} alt={reply?.userId?.firstName} className="w-10 h-10 rounded-full object-cover" />
+                </Link>
+
+                <div>
+                    <Link to={"/profile/" + reply?.userId?._id}>
+                        <p className='font-medium text-base text-ascent-1'>
+                            {reply?.userId?.firstName} {reply?.userId?.lastName}
+                        </p>
+                    </Link>
+
+                    <span className='text-ascent-2 text-sm'>
+                    {moment(reply?.createdAt ?? "2023-05-25").fromNow()}
+                </span>
+
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const CommentForm = ({user, id, replyAt, getComments}) => {
     const [loading, setLoading] = useState(false)
     const [errMsg, setErrMsg] = useState("")
     const { register, handleSubmit, formState: {errors}, } = useForm({
@@ -33,7 +58,7 @@ const CommentForm = ({user, id, getComment, replyAt}) => {
                 />
             </div>
             {errMsg?.message && (
-              <span className={`text-sm ${errMsg?.status == "failed" ? "text-[#f64949fe]" : "text-[#2ba150fe]"} mt-0.5`}>
+              <span className={`text-sm ${errMsg?.status === "failed" ? "text-[#f64949fe]" : "text-[#2ba150fe]"} mt-0.5`}>
                 {errMsg?.message}
               </span>
             )}
@@ -62,6 +87,8 @@ const Postcard = ({post, user, deletePost, likePost}) => {
   const [loading, setLoading] = useState(false)
   const [replyComments, setReplyComments] = useState(0)
   const [showComment, setShowComment] = useState(0)
+
+  const handleLike = async(data) => {}
 
   const getComments = async () => {
     setReplyComments(0)
@@ -206,7 +233,39 @@ const Postcard = ({post, user, deletePost, likePost}) => {
                                     <span className='text-blue cursor-pointer' onClick={()=> setReplyComments(comment?.id)}>
                                         Reply
                                     </span>
+
+                                    
                                 </div>
+                                { replyComments === comment?._id && (
+                                    <CommentForm 
+                                        user={user}
+                                        id={comment?._id}
+                                        replyAt={comment?.from}
+                                        getComments={()=> getComments(post?._id)}
+                                    />
+                                )}
+                            </div>
+
+                            {/* Reply */}
+                            <div className='py-2 px-8 mt-6'>
+                                {comment?.replies.length > 0 && (
+                                    <p
+                                        className='text-base text-ascent-1 cursor-pointer'
+                                        onClick={()=> setShowReply(
+                                            showReply === comment.replies?._id ? 0 : comment?.replies?._id
+                                        )}
+                                    >
+                                        Show Replies ({comment?.replies?.length})
+                                    </p>
+                                )}
+
+                                {
+                                    showReply === comment > comment.replies?.id && comment?.replies?.map((reply) => 
+                                        <ReplyCard reply={reply} user={user} key={reply?.id} handleLike={() => handleLike("post/lile-comment" + comment?.id + "/" + reply?.id)}
+                                        />    
+                                    )
+                                }
+                                
                             </div>
                         </div>
                     ))
