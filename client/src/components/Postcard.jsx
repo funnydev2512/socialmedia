@@ -244,7 +244,7 @@ const Postcard = ({post, user, deletePost, likePost}) => {
                                         )}
                                         {comment?.likes?.length} Likes
                                     </p>
-                                    <span className='text-blue cursor-pointer' onClick={()=> setReplyComments(comment?.id)}>
+                                    <span className='text-blue cursor-pointer' onClick={()=> setReplyComments(comment?._id)}>
                                         Reply
                                     </span>
 
