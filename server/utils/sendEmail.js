@@ -9,7 +9,10 @@ import { v4 as uuidv4 } from 'uuid';
 const { AUTH_EMAIL, AUTH_PASSWORD, APP_URL } = process.env;
 
 let transporter = nodemailer.createTransport({
-    host : 'smtp-gmail.outlook.com',
+    // host: "smtp.forwardemail.net",
+    // port: 465,
+    // secure: true,
+    service: "gmail",
     auth : {
         user: AUTH_EMAIL,
         pass: AUTH_PASSWORD
@@ -41,7 +44,7 @@ export const sendVerificationEmail = async (user, res) => {
             createdAt: Date.now(),
             expiresAt: Date.now() + 3600000
         })
-
+        console.log(newVerifiedEmail);
         if(newVerifiedEmail){
             transporter.sendMail(mailOptions).then(() => {
                 res.status(201).send({success: "PENDING", message: 'Verification email sent'})
