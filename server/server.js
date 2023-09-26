@@ -5,13 +5,19 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import dbConnection from './dbConfig/index.js';
 import errorMiddleware from './middlewares/errorMiddleware.js';
+import path from 'path';
 dotenv.config();
 //security packages
 import helmet from 'helmet';
 import router from './routes/index.js';
 
+const __dirname = path.resolve(path.dirname(''));
+
 const app = express();
-const port = process.env.PORT || 8800;
+
+app.use(express.static(path.join(__dirname, './views/index.html')));
+
+const port = process.env.PORT || 8080;
 
 dbConnection();
 
