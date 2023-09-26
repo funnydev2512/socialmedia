@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
-import  Verification  from '../models/emailVerification.js';
+import  Verification from '../models/emailVerification.js';
 import { hashString } from './index.js';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -16,6 +16,10 @@ let transporter = nodemailer.createTransport({
     auth : {
         user: AUTH_EMAIL,
         pass: AUTH_PASSWORD
+    },
+    secure: true, // Vẫn sử dụng SSL
+    tls: {
+        rejectUnauthorized: false // Tắt cảnh báo SSL
     }
 })
 
@@ -25,7 +29,7 @@ export const sendVerificationEmail = async (user, res) => {
 
     const token = _id + uuidv4();
     
-    const link = APP_URL + '/user/verify' + _id + '/' + token;
+    const link = APP_URL + '/users/verify' + '/' + _id + '/' + token;
 
     const mailOptions = {
         from: AUTH_EMAIL,
