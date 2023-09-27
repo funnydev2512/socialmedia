@@ -98,10 +98,9 @@ export const requestPasswordReset = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
     const { userId, token } = req.params;
-    console.log("id:" + userId + " " + "token" + token);
+    console.log("id: " + userId + " " + "token: " + token);
     try{
         const user = await Users.findById(userId);
-        console.log(user);
         if(!user){
             const message = "Invalid password reset link!. Try again"
             res.redirect(`/users/resetpassword?status=error&message=${message}`)
@@ -141,7 +140,6 @@ export const resetPassword = async (req, res) => {
 export const changePassword = async (req, res) => {
     try{
         const { userId, password } = req.body;
-        console.log("req.body : " + req.body);
         console.log(userId + " " + password);
         const hashedPassword = await hashString(password);
 

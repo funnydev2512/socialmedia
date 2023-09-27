@@ -12,11 +12,11 @@ router.get("/reset-password/:userId/:token", resetPassword)
 router.post("/reset-password", changePassword)
 
 router.get("/verified", (req, res) => {
-    res.sendFile(path.join(__dirname, './views/index.html'))
+    res.sendFile(path.join(__dirname, "./views/views/build", "index.html"))
 })
 
 router.get("/resetpassword", (req, res) => {
-    res.sendFile(path.join(__dirname, './views/index-password.html'))
+    res.sendFile(path.join(__dirname, "./views/views/build", "index.html"))
 })
 
 export default router;
