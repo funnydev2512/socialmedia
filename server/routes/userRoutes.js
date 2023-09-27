@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { verifyEmail, requestPasswordReset, resetPassword, changePassword} from '../controllers/userController.js';
+import { verifyEmail, requestPasswordReset, resetPassword, changePassword } from '../controllers/userController.js';
 
 const router = express.Router();
 const __dirname = path.resolve(path.dirname(''));
